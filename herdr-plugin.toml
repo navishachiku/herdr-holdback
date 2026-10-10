@@ -1,0 +1,33 @@
+id = "herdr-holdback"
+name = "Holdback"
+version = "0.1.0"
+min_herdr_version = "0.9.3"
+description = "Queue messages for the pane you are looking at; deliver them when focus leaves or you ask"
+platforms = ["macos", "linux", "windows"]
+
+[[startup]]
+command = ["node", "src/ensure.mjs"]
+
+[[events]]
+on = "pane.focused"
+command = ["node", "src/on-focus.mjs"]
+
+[[actions]]
+id = "open"
+title = "Open holdback"
+contexts = ["pane"]
+command = ["node", "src/open.mjs"]
+
+[[panes]]
+id = "list"
+title = "Holdback"
+placement = "popup"
+width = 72
+height = 16
+command = ["node", "src/list.mjs"]
+
+[[panes]]
+id = "bar"
+title = "Holdback bar"
+placement = "split"
+command = ["node", "src/bar.mjs"]
