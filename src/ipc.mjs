@@ -26,7 +26,7 @@ export async function call(msg) {
     if (!['ENOENT', 'ECONNREFUSED'].includes(e.code)) throw e;
   }
   spawn(process.execPath, [fileURLToPath(new URL('./daemon.mjs', import.meta.url))], {
-    detached: true, stdio: 'ignore', env: process.env,
+    detached: true, stdio: 'ignore', env: process.env, windowsHide: true,
   }).unref();
   for (let i = 0; i < 40; i++) {
     await sleep(100);

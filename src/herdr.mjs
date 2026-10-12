@@ -4,7 +4,7 @@ import { execFile } from 'node:child_process';
 export function run(args) {
   const bin = process.env.HERDR_BIN_PATH || 'herdr';
   return new Promise((resolve, reject) => {
-    execFile(bin, args, { encoding: 'utf8', timeout: 15000 }, (err, stdout, stderr) => {
+    execFile(bin, args, { encoding: 'utf8', timeout: 15000, windowsHide: true }, (err, stdout, stderr) => {
       if (err) reject(Object.assign(err, { stderr }));
       else resolve(stdout);
     });
